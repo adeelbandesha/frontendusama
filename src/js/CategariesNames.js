@@ -25,42 +25,39 @@ export const categaries = {
   },
   painting: {
     subcategories: [
+      // {
+      //   text: "Off White/White",
+      //   link: "Off White/White",
+      // },
       {
-        text: "Door (s) painting and polishing ",
-        link: "walls-painting",
+        text: "Color Painting ",
+        link: "Color Painting",
       },
       {
-        text: "furniture painting and polishing ",
-        link: "doors-painting",
+        text: " Water Damage Repair",
+        link: " Water Damage Repair",
       },
+     
       {
-        text: "Interior apartment or villa painting move-out or single coat",
-        link: "furniture-painting",
+        text: "Off White",
+        link: "Off White",
       },
-      {
-        text: " wall paper fixing",
-        link: "interior-single-coat",
-      },
-      {
-        text: " interior apartment or villa painting move-in or double coat",
-        link: "wallpaper-fixing",
-      },
-      {
-        text: "exterior villa painting ",
-        link: "interior-double-coat",
-      },
-      {
-        text: "touch up painting ",
-        link: "exterior-villa",
-      },
-      {
-        text: "Room painting",
-        link: "rooms-painting",
-      },
-      {
-        text: "other custom job fence painting etc",
-        link: "touchup-painting",
-      },
+      // {
+      //   text: "exterior villa painting ",
+      //   link: "interior-double-coat",
+      // },
+      // {
+      //   text: "touch up painting ",
+      //   link: "exterior-villa",
+      // },
+      // {
+      //   text: "Room painting",
+      //   link: "rooms-painting",
+      // },
+      // {
+      //   text: "other custom job fence painting etc",
+      //   link: "touchup-painting",
+      // },
     ],
   },
   plumbing: {
@@ -111,41 +108,42 @@ export const categaries = {
   deepcleaning: {
     subcategories: [
       {
-        text: "General cleaning",
-        link: "general-cleaning",
+        text: "Kitchen",
+        link: "Kitchen",
       },
       {
-        text: "Mattress cleaning",
-        link: "mattress-cleaning",
+        text: "Bathroom",
+        link: "Bathroom",
       },
       {
-        text: "floor cleaning or polishing ",
-        link: "floor-cleaning",
+        text: "Full Home ",
+        link: "Full Home",
       },
       {
-        text: "villa facade cleaning",
-        link: "villa-facade-cleaning",
+        text: "Balcony",
+        link: "Balcony",
       },
+      // {
+      //   text: "Curtain cleaning",
+      //   link: "curtain-cleaning",
+      // },
       {
-        text: "Curtain cleaning",
-        link: "curtain-cleaning",
-      },
-      {
-        text: "sofa upholstery cleaning ",
+        text: "Sofa cleaning ",
         link: "sofa-cleaning",
-      },
-      {
-        text: "Villa or apartment deep cleaning",
-        link: "villa-or-appartment-cleaning",
       },
       {
         text: "Carpet cleaning",
         link: "carpet-cleaning",
       },
       {
-        text: "other specialised job drain or sewer cleaning etc",
-        link: "drain-or-sewer-cleaning",
+        text: "Add Ones",
+        link: "Add Ones",
       },
+     
+      // {
+      //   text: "other specialised job drain or sewer cleaning etc",
+      //   link: "drain-or-sewer-cleaning",
+      // },
     ],
   },
   handyman: {

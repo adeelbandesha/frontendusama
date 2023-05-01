@@ -41,7 +41,6 @@ export default function App() {
         <Route path='/admin/dashboard' element={ <AdminDashboard />} />
         <Route path='/admin/login' element={ <AdminLogin />} />
         <Route path='*' element={ <Error /> } />
-        
       </Routes>
       </BrowserRouter> 
     </div>

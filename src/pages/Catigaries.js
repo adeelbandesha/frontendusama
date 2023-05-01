@@ -332,43 +332,46 @@ function Catigaries() {
                     </div>
                     <div className="caty_flexi">
                       <div className="flexi_phoos">
-                        <NavLink to="service/walls-painting">
+                        {/* <NavLink to="service/Off White/White">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_79} alt="" />
-                            <p className="caty_win_p">Wall(s) painting</p>
+                            <p className="caty_win_p">Off White/White</p>
+                          </div>
+                        </NavLink> */}
+                          {/* <NavLink to="service/Off-White">
+                          <div className="cart_1_img">
+                            <img className="caty_1" src={cartys_79} alt="" />
+                            <p className="caty_win_p">Off White/White</p>
+                          </div>
+                        </NavLink> */}
+
+                         <NavLink to="service/Off White">
+                          <div className="cart_1_img">
+                            <img className="caty_1" src={cartys_79} alt="" />
+                            <p className="caty_win_p">Off White/White</p>
                           </div>
                         </NavLink>
-                        <NavLink to="service/doors-painting">
+
+                        <NavLink to="service/Color Painting">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_80} alt="" />
                             <p className="caty_win_p">
-                              Door(s) painting and polishing
+                              Color Painting
                             </p>
                           </div>
                         </NavLink>
-                        <NavLink to="service/furniture-painting">
+                        <NavLink to="service/ Water Damage Repair">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_81} alt="" />
                             <p className="caty_win_p">
-                              Furniture painting and polishing
+                              Water Damage Repair
                             </p>
                           </div>
                         </NavLink>
-                        <NavLink to="service/interior-single-coat">
-                          <div className="cart_1_img">
-                            <img className="caty_1" src={cartys_82} alt="" />
-                            <p className="caty_win_p">
-                              Interior apartment or villa painting - Move-out or
-                              single coat
-                            </p>
-                          </div>
-                        </NavLink>
-                        <NavLink to="service/wallpaper-fixing">
-                          <div className="cart_1_img">
-                            <img className="caty_1" src={cartys_83} alt="" />
-                            <p className="caty_win_p">Wall paper fixing</p>
-                          </div>
-                        </NavLink>
+                        
+                        
+                        {/*
+                       
                         <NavLink to="service/interior-double-coat">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_84} alt="" />
@@ -405,7 +408,7 @@ function Catigaries() {
                               Other custom job - fence painting, etc.
                             </p>
                           </div>
-                        </NavLink>
+                        </NavLink> */}
                       </div>
                     </div>
                   </Tab.Pane>
@@ -541,51 +544,38 @@ function Catigaries() {
                     </div>
                     <div className="caty_flexi">
                       <div className="flexi_phoos">
-                        <NavLink to="service/general-cleaning">
+                        <NavLink to="service/Kitchen">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_21} alt="" />
-                            <p className="caty_win_p">General cleaning</p>
+                            <p className="caty_win_p">Kitchen</p>
                           </div>
                         </NavLink>
-                        <NavLink to="service/mattress-cleaning">
+                        <NavLink to="service/Bathroom">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_22} alt="" />
-                            <p className="caty_win_p">Mattress cleaning</p>
+                            <p className="caty_win_p">Bathroom</p>
                           </div>
                         </NavLink>
-                        <NavLink to="service/floor-cleaning">
+                        <NavLink to="service/Full Home">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_23} alt="" />
                             <p className="caty_win_p">
-                              Floor cleaning or polishing
+                              Full Home
                             </p>
                           </div>
                         </NavLink>
-                        <NavLink to="service/villa-facade-cleaning">
+                        <NavLink to="service/Balcony">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_24} alt="" />
-                            <p className="caty_win_p">Villa facade cleaning</p>
+                            <p className="caty_win_p">Balcony</p>
                           </div>
                         </NavLink>
-                        <NavLink to="service/curtain-cleaning">
-                          <div className="cart_1_img">
-                            <img className="caty_1" src={cartys_25} alt="" />
-                            <p className="caty_win_p">Curtain cleaning</p>
-                          </div>
-                        </NavLink>
+                        
                         <NavLink to="service/sofa-cleaning">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_34} alt="" />
                             <p className="caty_win_p">
-                              Sofa upholstery cleaning
-                            </p>
-                          </div>
-                        </NavLink>
-                        <NavLink to="service/villa-or-appartment-cleaning">
-                          <div className="cart_1_img">
-                            <img className="caty_1" src={cartys_35} alt="" />
-                            <p className="caty_win_p">
-                              Villa or apartment deep cleaning
+                              Sofa
                             </p>
                           </div>
                         </NavLink>
@@ -595,7 +585,16 @@ function Catigaries() {
                             <p className="caty_win_p">Carpet cleaning</p>
                           </div>
                         </NavLink>
-                        <NavLink to="service/drain-or-sewer-cleaning">
+                        <NavLink to="service/Add Ones">
+                          <div className="cart_1_img">
+                            <img className="caty_1" src={cartys_35} alt="" />
+                            <p className="caty_win_p">
+                              Add Ones
+                            </p>
+                          </div>
+                        </NavLink>
+                       
+                        {/* <NavLink to="service/drain-or-sewer-cleaning">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_38} alt="" />
                             <p className="caty_win_p">
@@ -603,7 +602,7 @@ function Catigaries() {
                               etc.
                             </p>
                           </div>
-                        </NavLink>
+                        </NavLink> */}
                       </div>
                     </div>
                   </Tab.Pane>

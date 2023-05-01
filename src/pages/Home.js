@@ -155,7 +155,7 @@ function Home() {
       <Header />
      
         {/*  */}
-      <Packages />
+      
       
       <div className="container">
         <div className="row">
@@ -295,6 +295,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <Packages />
       <div className="win_speacil_back p-5">
         <div className="container special_heading">
           <div className="row">

@@ -2300,6 +2300,45 @@ ul.mb-3.nav.nav-tabs {
   height: 120px;
   overflow: hidden;
 }
+/* model css */
+.modelbody{
+  display: flex;
+  flex-direction: column;
+}
+.modelD{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#viewD{
+  border: none;
+  background-color: white;
+  color: #55acee;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 15px;
+}
+#viewD:hover{
+  background-color: rgb(221, 218, 218);
+  color: black;
+  border-radius: 20px;
+  
+}
+#add{
+  background-color: #faf2f2;
+  border-radius: 10px;
+  color: #55acee;
+  border: 1px solid transparent;
+  
+}
+#spn{
+  color: black;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+
+
 .dotted-border {
   border-bottom: 2px dashed #50d1c0;
 }

@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { Stepper } from "react-form-stepper";
 import { useSelector } from "react-redux";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import serviceInfo from "../assets/images/serviceInfo.png";
 import ServiceInfo from "./modals/ServiceInfo";
 
-const Wizard = ({ children, data, furnished, unit,selecteds, selected, date, time, location }) => {
+const Wizard = ({
+  children,
+  data,
+  furnished,
+  unit,
+  selecteds,
+  selected,
+  date,
+  time,
+  location,
+  additionaldata,
+}) => {
   const { category, subcategory } = useParams();
   const subCat = subcategory.split("-").join(" ");
   const [activePageIndex, setActivePageIndex] = useState(0);
@@ -15,7 +26,6 @@ const Wizard = ({ children, data, furnished, unit,selecteds, selected, date, tim
 
   const page2Validations = useSelector((s) => s.services.step2Validations);
   const page3Validations = useSelector((s) => s.services.step3Validations);
- 
 
   const goNextPage = () => {
     if (activePageIndex - 1 == -1) {
@@ -90,19 +100,19 @@ const Wizard = ({ children, data, furnished, unit,selecteds, selected, date, tim
                   <p className="fw-bold">{selected}</p>
                 </div>
 
-                <div className="checkboxss ">
+                {/* <div className="checkboxss ">
                 <span> Location : {location} </span>
-               </div>
+               </div> */}
 
-               <div className="d-flex justify-content-between summary-type">
+                <div className="d-flex justify-content-between summary-type">
                   <p>{data?.uni}</p>
                   <p className="fw-bold">{selecteds}</p>
                 </div>
-                
-                <div className="d-flex justify-content-between summary-type">
+
+                {/* <div className="d-flex justify-content-between summary-type">
                   <p>{data?.unit}</p>
                   <p className="fw-bold">{unit}</p>
-                </div>
+                </div> */}
                 <div className="d-flex justify-content-between summary-type">
                   <p>{data?.additional}</p>
                   <p className="fw-bold">{furnished ? "Yes" : "No"}</p>
@@ -124,6 +134,20 @@ const Wizard = ({ children, data, furnished, unit,selecteds, selected, date, tim
                     <p className="fw-bold">{time}</p>
                   </div>
                 )}
+              </div>
+              <div>
+                <p primary py-2 bottom-border>
+                  Additional
+                </p>
+              </div>
+              <div>
+                {
+                  additionaldata && <div>
+                  <h3>{additionaldata.title}</h3>
+                  <span>AED {additionaldata.price}</span>
+                  <span> . {additionaldata.time}</span>
+                </div>
+                }
               </div>
             </div>
           </div>

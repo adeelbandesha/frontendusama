@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 // import "./styles.css";
 // import Wizard from "./Wizard";
 import Wizard from "../components/Wizard";
@@ -14,6 +15,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { categoriesPrices } from "../js/CateroiesPrices";
+
 import { useNavigate, useParams } from "react-router-dom";
 
 import { sendBooking } from "../helpers/sendBooking";
@@ -30,28 +32,43 @@ import { selectedTimes } from "../js/CategariesNames";
 import { monthDates } from "../js/CategariesNames";
 import { CategoriesDetails } from "../js/CategoriesDetails";
 
-
-
 function SubCatigaries() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
-  const [shows,] = useState(false);
+  const [shows] = useState(false);
   const handsleClose = () => setShow(false);
   const handsleShow = () => setShow(true);
   const [modalShow, setModalShow] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
+  const [modalIsOpen1, setIsOpen1] = useState(false);
+
+  const openModal1 = () => setIsOpen1(true);
+  const closeModal1 = () => setIsOpen1(false);
+
+  const [modalIsOpen2, setIsOpen2] = useState(false);
+
+  const openModal2 = () => setIsOpen2(true);
+  const closeModal2 = () => setIsOpen2(false);
 
   const { category, subcategory } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let currentData = categoriesPrices[category]?.find(
-    (elem) => elem?.name == subcategory);
-    
+    (elem) => elem?.name == subcategory
+  );
+
   const counter = currentData?.units;
   const [unit, setUnit] = useState(currentData?.units);
   const [unitCounter, setUnitCounter] = useState(1);
-  
-  const [selectedReasons, setSelectedReasons] = useState(currentData?.rooms ? currentData?.rooms[0]: null);
+
+  const [selectedReasons, setSelectedReasons] = useState(
+    currentData?.rooms ? currentData?.rooms[0] : null
+  );
   const [selectedReason, setSelectedReason] = useState(currentData?.reasons[0]);
 
   const [useTerms, setUseTerms] = useState(false);
@@ -64,14 +81,18 @@ function SubCatigaries() {
   const [loginRequire, setLoginRequire] = useState(false);
 
   const categoryImage = CategoriesDetails.find((cat) => {
-    return cat.value === category
-  })?.image
+    return cat.value === category;
+  })?.image;
 
-  const [location, setLocation] = useState("Villa")
+  const [location, setLocation] = useState("Villa");
+
+  const [additionalData, setAdditionalData] = useState(null)
+
+  console.log('additional:::::::::::::', additionalData)
 
   const changeLocationState = (e) => {
-    setLocation(e.target.value)
-  }
+    setLocation(e.target.value);
+  };
 
   useEffect(() => {
     let bookingData = {
@@ -87,24 +108,23 @@ function SubCatigaries() {
       text: "Booking Summary",
       subTotal: Number(
         currentData?.price * unitCounter +
-        (currentData?.additionalCharges && activeBtn == "yes"
-          ? currentData?.additionalCharges * unitCounter
-          : 0)
+          (currentData?.additionalCharges && activeBtn == "yes"
+            ? currentData?.additionalCharges * unitCounter
+            : 0)
       ).toFixed(2),
       discount: currentData.onSurvey
         ? 0
         : Number(0.65 * unitCounter).toFixed(2),
       total: Number(
         currentData?.price * unitCounter -
-        (0.65 * unitCounter).toFixed(2) +
-        (currentData?.additionalCharges && activeBtn == "yes"
-          ? currentData?.additionalCharges * unitCounter
-          : 0)
+          (0.65 * unitCounter).toFixed(2) +
+          (currentData?.additionalCharges && activeBtn == "yes"
+            ? currentData?.additionalCharges * unitCounter
+            : 0)
       ).toFixed(2),
     };
     dispatch(setBookServiceData(bookingData));
-  }, [unit, selectedReason, selectedReasons, furnished, unitCounter,]);
-
+  }, [unit, selectedReason, selectedReasons, furnished, unitCounter]);
 
   const getCurrentDate = (date) => {
     setGetDate(date);
@@ -143,18 +163,16 @@ function SubCatigaries() {
       setUnit((unit) => unit - counter);
       setUnitCounter((unitCounter) => unitCounter - 1);
     }
-
-
   };
 
   const currentDates = {
     dots: false,
-    // infinite: false, 
+    // infinite: false,
     speed: 500,
     centerMode: true,
     slidesToShow: 5,
     slidesToScroll: 1,
-    initialSlide: monthDates?.findIndex(el => el?.date == getDate) ?? 2,
+    initialSlide: monthDates?.findIndex((el) => el?.date == getDate) ?? 2,
     responsive: [
       {
         breakpoint: 1024,
@@ -232,6 +250,14 @@ function SubCatigaries() {
     ],
   };
 
+  const addAdditional = (text, price, hours) => {
+    console.log("added");
+    console.log(text)
+    console.log(price)
+    console.log(hours)
+    setAdditionalData({title:text, price: price, time:hours}) 
+  };
+
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
@@ -268,9 +294,9 @@ function SubCatigaries() {
             <p>
               {Number(
                 currentData?.price * unitCounter +
-                (currentData?.additionalCharges && activeBtn == "yes"
-                  ? currentData?.additionalCharges * unitCounter
-                  : 0)
+                  (currentData?.additionalCharges && activeBtn == "yes"
+                    ? currentData?.additionalCharges * unitCounter
+                    : 0)
               ).toFixed(2)}
             </p>
           </div>
@@ -284,10 +310,10 @@ function SubCatigaries() {
             <h5 className="fw-bold">
               {Number(
                 currentData?.price * unitCounter -
-                (0.65 * unitCounter).toFixed(2) +
-                (currentData?.additionalCharges && activeBtn == "yes"
-                  ? currentData?.additionalCharges * unitCounter
-                  : 0)
+                  (0.65 * unitCounter).toFixed(2) +
+                  (currentData?.additionalCharges && activeBtn == "yes"
+                    ? currentData?.additionalCharges * unitCounter
+                    : 0)
               ).toFixed(2)}
             </h5>
           </div>
@@ -302,14 +328,227 @@ function SubCatigaries() {
     );
   }
 
+  console.log("CurrentDAAAAAAAAAAAAAAAAAAAAAAATA:::", currentData);
   const Page1 = () => (
     <>
+      <Modal
+        show={modalIsOpen}
+        onHide={() => setIsOpen(false)}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            <div className="heading">
+              <h1>Apartment</h1>
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="modelbody">
+            <div className="modelD">
+              <span id="spn">{currentData?.text}</span>
+              <button className="add" onClick={() => addAdditional(currentData?.text, currentData?.prz, currentData?.hrs)}>
+                Add
+              </button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+            <div className="modelD">
+              <span id="spn">{currentData?.text1}</span>
+              <button className="add" onClick={() => addAdditional(currentData?.text1, currentData?.prz1, currentData?.hrs)}>
+                Add
+              </button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz1} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+            <div className="modelD">
+              <button className="add" onClick={() => addAdditional(currentData?.text2, currentData?.prz2, currentData?.hrs)}>
+                Add
+              </button>
+              <button id="add">Add</button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz2} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+            <div className="modelD">
+              <span id="spn">{currentData?.text3}</span>
+              <button className="add" onClick={() => addAdditional(currentData?.text3, currentData?.prz3, currentData?.hrs)}>
+                Add
+              </button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz3} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+            <div className="modelD">
+              <span id="spn">{currentData?.text4}</span>
+              <button className="add" onClick={() => addAdditional(currentData?.text4, currentData?.prz4, currentData?.hrs)}>
+                Add
+              </button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz4} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => setIsOpen(false)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={modalIsOpen1}
+        onHide={() => setIsOpen1(false)}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            <div className="heading">
+              <h1>Villa</h1>
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="modelbody">
+            <div className="modelD">
+              <span id="spn">{currentData?.texta1}</span>
+              <button id="add">Add</button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz1a} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+            <div className="modelD">
+              <span id="spn">{currentData?.texta2}</span>
+              <button id="add">Add</button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz2a} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+            <div className="modelD">
+              <span id="spn">{currentData?.texta3}</span>
+              <button id="add">Add</button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz3a} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+            <div className="modelD">
+              <span id="spn">{currentData?.texta4}</span>
+              <button id="add">Add</button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz4a} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => setIsOpen1(false)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={modalIsOpen2}
+        onHide={() => setIsOpen2(false)}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            <div className="heading">
+              <h1>Individual Area</h1>
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="modelbody">
+            <div className="modelD">
+              <span id="spn">{currentData?.texti1}</span>
+              <button id="add">Add</button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz1i} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+            <div className="modelD">
+              <span id="spn">{currentData?.texti2}</span>
+              <button id="add">Add</button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz2i} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+            <div className="modelD">
+              <span id="spn">{currentData?.texti3}</span>
+              <button id="add">Add</button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz3i} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+            <div className="modelD">
+              <span id="spn">{currentData?.texti4}</span>
+              <button id="add">Add</button>
+            </div>
+            <div className="prz">
+              <p>
+                AED{currentData?.prz4i} . <span>{currentData?.hrs}</span>{" "}
+              </p>
+            </div>
+            <hr></hr>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => setIsOpen2(false)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+
       <div>
-        <div className="counter_img"
-          style={{ backgroundImage: `url("${categoryImage ? `/categories/${categoryImage}` : banne}")` }} >
-
-
-        </div>
+        <div
+          className="counter_img"
+          style={{
+            backgroundImage: `url("${
+              categoryImage ? `/categories/${categoryImage}` : banne
+            }")`,
+          }}
+        ></div>
         <div className="counter_head">
           <h1>What service do you need? </h1>
           <p>
@@ -331,52 +570,73 @@ function SubCatigaries() {
                 </option>
               ))}
             </select>
-
           </div>
-
-
+        </div>
+        <div className="details">
+          <button id="viewD" onClick={openModal}>
+            View details
+          </button>
         </div>
 
-
-        <div className="checkbox">
+        {/* <div className="checkbox">
           <input type="radio" name="location" id="Villa" value="Villa" checked={location === "Villa"} onChange={changeLocationState} />
           <label for="villa"> {currentData?.vm}</label>
           <input name="location" type="radio" id="Apartment" value="Appartment" checked={location === "Appartment"} onChange={changeLocationState} />
           <label for="appartment"> {currentData?.am}</label>
-        </div>
-
+        </div> */}
 
         <div className="conter_select">
           <p>{currentData?.uni}</p>
 
-          {
-            selectedReasons &&
+          {selectedReasons && (
             <div className="selecter">
-            <select
-              onChange={(e) => setSelectedReasons(e.target.value)}
-              value={selectedReasons}
-              className="text-capitalize"
-            >
-              {currentData?.rooms?.map((el, i) => (
-                <option key={i} value={el} className="text-capitalize">
-                  {el}
-                </option>
-              ))}
-            </select>
-
-          </div>
-          }
-          
-
-
+              <select
+                onChange={(e) => setSelectedReasons(e.target.value)}
+                value={selectedReasons}
+                className="text-capitalize"
+              >
+                {currentData?.rooms?.map((el, i) => (
+                  <option key={i} value={el} className="text-capitalize">
+                    {el}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+        </div>
+        <div className="details">
+          <button id="viewD" onClick={openModal1}>
+            View details
+          </button>
         </div>
 
+        <div className="conter_select">
+          <p>{currentData?.rea}</p>
 
-
-
+          {selectedReasons && (
+            <div className="selecter">
+              <select
+                onChange={(e) => setSelectedReasons(e.target.value)}
+                value={selectedReasons}
+                className="text-capitalize"
+              >
+                {currentData?.reas?.map((el, i) => (
+                  <option key={i} value={el} className="text-capitalize">
+                    {el}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+        </div>
+        <div className="details">
+          <button id="viewD" onClick={openModal2}>
+            View details
+          </button>
+        </div>
 
         <div className="counter">
-          <div className="d-md-flex align-items-center justify-content-between d-block counter_head_1">
+          {/* <div className="d-md-flex align-items-center justify-content-between d-block counter_head_1">
             <p>{currentData?.unit}</p>
             <p className="d-flex location align-items-center">
               <button onClick={decreaseCounter} style={{ flex: "1" }}>-</button>
@@ -392,7 +652,7 @@ function SubCatigaries() {
                 +
               </button>
             </p>
-          </div>
+          </div> */}
 
           <div className="loacation_con">
             <div className="location_head">
@@ -440,11 +700,14 @@ function SubCatigaries() {
 
   const Page2 = () => (
     <div>
-      <div className="counter_img"
-        style={{ backgroundImage: `url("${categoryImage ? `/categories/${categoryImage}` : banne}")` }}
-      >
-
-      </div>
+      <div
+        className="counter_img"
+        style={{
+          backgroundImage: `url("${
+            categoryImage ? `/categories/${categoryImage}` : banne
+          }")`,
+        }}
+      ></div>
       <div className="counter_head">
         <h1>When do you need the service?</h1>
         <p>Let us know your availability so we can work our schedule.</p>
@@ -459,10 +722,17 @@ function SubCatigaries() {
         <Slider {...currentDates}>
           {monthDates?.map((el) => {
             return (
-              <div className="all_dates" onClick={() => getCurrentDate(el?.date)}>
-                <button className={`date_piker ${el?.date == getDate ? 'date_active' : ''}`}>
+              <div
+                className="all_dates"
+                onClick={() => getCurrentDate(el?.date)}
+              >
+                <button
+                  className={`date_piker ${
+                    el?.date == getDate ? "date_active" : ""
+                  }`}
+                >
                   <p className="day">{el?.dayName}</p>
-                  <h6 className="slider_date">{el?.date.split('/')[1]}</h6>
+                  <h6 className="slider_date">{el?.date.split("/")[1]}</h6>
                 </button>
               </div>
             );
@@ -477,8 +747,9 @@ function SubCatigaries() {
           {selectedTimes?.map((el, i) => {
             return (
               <div
-                className={`time_border pointer ${el == getTime ? "time_border_active" : ""
-                  }`}
+                className={`time_border pointer ${
+                  el == getTime ? "time_border_active" : ""
+                }`}
                 key={i}
                 onClick={() => setGetTime(el)}
               >
@@ -497,7 +768,7 @@ function SubCatigaries() {
         {/* <p className="thanku">Thank you!</p> */}
         <p className="confrined">Your booking is almost ready</p>
         {/* <p>
-          <b>Cleaning</b> General Cleaning
+          <b>Cleaning</b>
         </p>
         <p>
           <b>JOB ID</b> <span>221019947</span>{" "}
@@ -527,7 +798,6 @@ function SubCatigaries() {
     </div>
   );
 
-
   return (
     <>
       {/* <Header /> */}
@@ -541,8 +811,8 @@ function SubCatigaries() {
         date={getDate}
         time={getTime}
         currentData={currentData}
-
         location={location}
+        additionaldata = {additionalData? additionalData : null}
       >
         <Page1 />
         <Page2 category={category} />
@@ -649,15 +919,15 @@ function SubCatigaries() {
             </Offcanvas>
 
             <Button variant="primary" onClick={() => setModalShow(true)}>
-              AED{" "}
+              AED{""}
               {currentData?.onSurvey
                 ? 0.0
                 : activeBtn == "yes" && currentData?.additionalCharges
-                  ? currentData?.price * unitCounter -
+                ? currentData?.price * unitCounter -
                   (0.65 * unitCounter).toFixed(2) +
                   unitCounter * currentData?.additionalCharges
-                  : currentData?.price * unitCounter -
-                  (0.65 * unitCounter).toFixed(2)}
+                : currentData?.price * unitCounter -
+                  (0.65 * unitCounter).toFixed(2) + additionalData? additionalData?.price : 0}
               {currentData?.onSurvey ? (
                 <p
                   className="fw-bold"
