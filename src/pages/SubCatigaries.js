@@ -86,7 +86,7 @@ function SubCatigaries() {
 
   const [location, setLocation] = useState("Villa");
 
-  const [additionalData, setAdditionalData] = useState(null)
+  const [additionalData, setAdditionalData] = useState([])
 
   console.log('additional:::::::::::::', additionalData)
 
@@ -255,7 +255,7 @@ function SubCatigaries() {
     console.log(text)
     console.log(price)
     console.log(hours)
-    setAdditionalData({title:text, price: price, time:hours}) 
+    setAdditionalData([...additionalData, {title:text, price: price, time:hours}]) 
   };
 
   function MyVerticallyCenteredModal(props) {
@@ -328,7 +328,7 @@ function SubCatigaries() {
     );
   }
 
-  console.log("CurrentDAAAAAAAAAAAAAAAAAAAAAAATA:::", currentData);
+ 
   const Page1 = () => (
     <>
       <Modal
@@ -798,6 +798,14 @@ function SubCatigaries() {
     </div>
   );
 
+  function getAdditionalPrice(){
+    let additionalPrice = 0
+    additionalData.map((item) => {
+      additionalPrice = additionalPrice + parseInt(item.price)
+    })
+
+    return additionalPrice
+  }
   return (
     <>
       {/* <Header /> */}
@@ -917,7 +925,7 @@ function SubCatigaries() {
                 </p>
               </Offcanvas.Body>
             </Offcanvas>
-
+            
             <Button variant="primary" onClick={() => setModalShow(true)}>
               AED{""}
               {currentData?.onSurvey
@@ -927,7 +935,7 @@ function SubCatigaries() {
                   (0.65 * unitCounter).toFixed(2) +
                   unitCounter * currentData?.additionalCharges
                 : currentData?.price * unitCounter -
-                  (0.65 * unitCounter).toFixed(2) + additionalData? additionalData?.price : 0}
+                  (0.65 * unitCounter).toFixed(2) + additionalData? getAdditionalPrice() : 0}
               {currentData?.onSurvey ? (
                 <p
                   className="fw-bold"

@@ -142,11 +142,13 @@ const Wizard = ({
               </div>
               <div>
                 {
-                  additionaldata && <div>
-                  <h3>{additionaldata.title}</h3>
-                  <span>AED {additionaldata.price}</span>
-                  <span> . {additionaldata.time}</span>
-                </div>
+                  additionaldata && additionaldata.map((item) => {
+                    return <div>
+                    <h3>{item.title}</h3>
+                    <span>AED {item.price}</span>
+                    <span> . {item.time}</span>
+                  </div>
+                  })
                 }
               </div>
             </div>
