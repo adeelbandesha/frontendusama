@@ -579,12 +579,12 @@ function Catigaries() {
                             </p>
                           </div>
                         </NavLink>
-                        <NavLink to="service/carpet-cleaning">
+                        {/* <NavLink to="service/carpet-cleaning">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_36} alt="" />
                             <p className="caty_win_p">Carpet cleaning</p>
                           </div>
-                        </NavLink>
+                        </NavLink> */}
                         <NavLink to="service/Add Ones">
                           <div className="cart_1_img">
                             <img className="caty_1" src={cartys_35} alt="" />

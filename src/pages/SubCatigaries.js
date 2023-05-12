@@ -331,7 +331,7 @@ function SubCatigaries() {
  
   const Page1 = () => (
     <>
-      <Modal
+      {/* <Modal
         show={modalIsOpen}
         onHide={() => setIsOpen(false)}
         size="lg"
@@ -538,7 +538,7 @@ function SubCatigaries() {
         <Modal.Footer>
           <Button onClick={() => setIsOpen2(false)}>Close</Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
 
       <div>
         <div
@@ -572,11 +572,11 @@ function SubCatigaries() {
             </select>
           </div>
         </div>
-        <div className="details">
+        {/* <div className="details">
           <button id="viewD" onClick={openModal}>
             View details
           </button>
-        </div>
+        </div> */}
 
         {/* <div className="checkbox">
           <input type="radio" name="location" id="Villa" value="Villa" checked={location === "Villa"} onChange={changeLocationState} />
@@ -604,11 +604,11 @@ function SubCatigaries() {
             </div>
           )}
         </div>
-        <div className="details">
+        {/* <div className="details">
           <button id="viewD" onClick={openModal1}>
             View details
           </button>
-        </div>
+        </div> */}
 
         <div className="conter_select">
           <p>{currentData?.rea}</p>
@@ -629,11 +629,11 @@ function SubCatigaries() {
             </div>
           )}
         </div>
-        <div className="details">
+        {/* <div className="details">
           <button id="viewD" onClick={openModal2}>
             View details
           </button>
-        </div>
+        </div> */}
 
         <div className="counter">
           {/* <div className="d-md-flex align-items-center justify-content-between d-block counter_head_1">
