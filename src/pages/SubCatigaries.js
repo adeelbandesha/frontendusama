@@ -69,7 +69,8 @@ function SubCatigaries() {
   const [selectedReasons, setSelectedReasons] = useState(
     currentData?.rooms ? currentData?.rooms[0] : null
   );
-  const [selectedReason, setSelectedReason] = useState(currentData?.reasons[0]);
+  const [selectedReason, setSelectedReason] = useState(null);
+  console.log('reson seselcted ::: ', selectedReason)
 
   const [useTerms, setUseTerms] = useState(false);
   const [furnished, setFurnished] = useState(false);
@@ -79,6 +80,9 @@ function SubCatigaries() {
   const [getTime, setGetTime] = useState();
   const [showDate, setShowDate] = useState();
   const [loginRequire, setLoginRequire] = useState(false);
+  const [selectedPrice, setSelectedPrice] = useState(0)
+
+  const [disableOthers, setDisableOthers] = useState(null)
 
   const categoryImage = CategoriesDetails.find((cat) => {
     return cat.value === category;
@@ -86,9 +90,9 @@ function SubCatigaries() {
 
   const [location, setLocation] = useState("Villa");
 
-  const [additionalData, setAdditionalData] = useState([])
+  // const [additionalData, setAdditionalData] = useState([])
 
-  console.log('additional:::::::::::::', additionalData)
+  // console.log('additional:::::::::::::', additionalData)
 
   const changeLocationState = (e) => {
     setLocation(e.target.value);
@@ -125,7 +129,7 @@ function SubCatigaries() {
     };
     dispatch(setBookServiceData(bookingData));
   }, [unit, selectedReason, selectedReasons, furnished, unitCounter]);
-
+  console.log('selected price:: ', selectedPrice)
   const getCurrentDate = (date) => {
     setGetDate(date);
     const today = new Date(date);
@@ -255,7 +259,7 @@ function SubCatigaries() {
     console.log(text)
     console.log(price)
     console.log(hours)
-    setAdditionalData([...additionalData, {title:text, price: price, time:hours}]) 
+    // setAdditionalData([...additionalData, {title:text, price: price, time:hours}]) 
   };
 
   function MyVerticallyCenteredModal(props) {
@@ -323,7 +327,8 @@ function SubCatigaries() {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
+        </Modal.Footer>              disabled = {selectedReason}
+
       </Modal>
     );
   }
@@ -560,12 +565,14 @@ function SubCatigaries() {
           <p>{currentData?.reason}</p>
           <div className="selecter">
             <select
-              onChange={(e) => setSelectedReason(e.target.value)}
+              onChange={(e) => {setSelectedReason(e.target.value); setDisableOthers(true)}}
               value={selectedReason}
               className="text-capitalize"
+              disabled={disableOthers}
             >
+              {console.log('cirrentdatra reasons::: ', currentData?.reasons)}
               {currentData?.reasons?.map((el, i) => (
-                <option key={i} value={el} className="text-capitalize">
+                <option key={i} value={el}dclassName="text-capitalize">
                   {el}
                 </option>
               ))}
@@ -591,9 +598,10 @@ function SubCatigaries() {
           {selectedReasons && (
             <div className="selecter">
               <select
-                onChange={(e) => setSelectedReasons(e.target.value)}
+                onChange={(e) => {setSelectedReason(e.target.value); setDisableOthers(true)}}
                 value={selectedReasons}
                 className="text-capitalize"
+                disabled={disableOthers}
               >
                 {currentData?.rooms?.map((el, i) => (
                   <option key={i} value={el} className="text-capitalize">
@@ -616,9 +624,10 @@ function SubCatigaries() {
           {selectedReasons && (
             <div className="selecter">
               <select
-                onChange={(e) => setSelectedReasons(e.target.value)}
-                value={selectedReasons}
+                onChange={(e) => {setSelectedReason(e.target.value); setDisableOthers(true)}}
+                value={selectedReason}
                 className="text-capitalize"
+                disabled={disableOthers}
               >
                 {currentData?.reas?.map((el, i) => (
                   <option key={i} value={el} className="text-capitalize">
@@ -798,14 +807,14 @@ function SubCatigaries() {
     </div>
   );
 
-  function getAdditionalPrice(){
-    let additionalPrice = 0
-    additionalData.map((item) => {
-      additionalPrice = additionalPrice + parseInt(item.price)
-    })
+  // function getAdditionalPrice(){
+  //   let additionalPrice = 0
+  //   additionalData.map((item) => {
+  //     additionalPrice = additionalPrice + parseInt(item.price)
+  //   })
 
-    return additionalPrice
-  }
+  //   return additionalPrice
+  // }
   return (
     <>
       {/* <Header /> */}
@@ -820,7 +829,7 @@ function SubCatigaries() {
         time={getTime}
         currentData={currentData}
         location={location}
-        additionaldata = {additionalData? additionalData : null}
+        // additionaldata = {additionalData? additionalData : null}
       >
         <Page1 />
         <Page2 category={category} />
@@ -927,7 +936,7 @@ function SubCatigaries() {
             </Offcanvas>
             
             <Button variant="primary" onClick={() => setModalShow(true)}>
-              AED{""}
+              AED 
               {currentData?.onSurvey
                 ? 0.0
                 : activeBtn == "yes" && currentData?.additionalCharges
@@ -935,7 +944,7 @@ function SubCatigaries() {
                   (0.65 * unitCounter).toFixed(2) +
                   unitCounter * currentData?.additionalCharges
                 : currentData?.price * unitCounter -
-                  (0.65 * unitCounter).toFixed(2) + additionalData? getAdditionalPrice() : 0}
+                  (0.65 * unitCounter).toFixed(2)}
               {currentData?.onSurvey ? (
                 <p
                   className="fw-bold"

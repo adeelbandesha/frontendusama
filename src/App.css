@@ -900,10 +900,14 @@ input[type="submit"]:active {
 
 .cart_1_img {
   display: block;
-  max-width: 150px;
+  width: 150px;
   margin-left: 20px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 5px;
+}
+.mynavcard {
+  width: 150px;
+  margin: 7px;
 }
 
 .cart_1_img .caty_1 {

@@ -17,6 +17,7 @@ const Wizard = ({
   location,
   additionaldata,
 }) => {
+  console.log('data::: ', data, selected)
   const { category, subcategory } = useParams();
   const subCat = subcategory.split("-").join(" ");
   const [activePageIndex, setActivePageIndex] = useState(0);
@@ -137,19 +138,11 @@ const Wizard = ({
               </div>
               <div>
                 <p primary py-2 bottom-border>
-                  Additional
+                  Price Total 
                 </p>
               </div>
               <div>
-                {
-                  additionaldata && additionaldata.map((item) => {
-                    return <div>
-                    <h3>{item.title}</h3>
-                    <span>AED {item.price}</span>
-                    <span> . {item.time}</span>
-                  </div>
-                  })
-                }
+                <p>${selected && selected.includes('1') && data.prz || selected && selected.includes('2') && data.prz*2 || selected && selected.includes('3') && data.prz*3 || selected && selected.includes('4') && data.prz*4 || selected && selected.includes('5') && data.prz*5}</p>
               </div>
             </div>
           </div>
