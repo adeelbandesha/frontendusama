@@ -70,7 +70,7 @@ function SubCatigaries() {
     currentData?.rooms ? currentData?.rooms[0] : null
   );
   const [selectedReason, setSelectedReason] = useState(null);
-  console.log('reson seselcted ::: ', selectedReason)
+  console.log("reson seselcted ::: ", selectedReason);
 
   const [useTerms, setUseTerms] = useState(false);
   const [furnished, setFurnished] = useState(false);
@@ -80,9 +80,9 @@ function SubCatigaries() {
   const [getTime, setGetTime] = useState();
   const [showDate, setShowDate] = useState();
   const [loginRequire, setLoginRequire] = useState(false);
-  const [selectedPrice, setSelectedPrice] = useState(0)
+  const [selectedPrice, setSelectedPrice] = useState(0);
 
-  const [disableOthers, setDisableOthers] = useState(null)
+  // const [disableOthers, setDisableOthers] = useState(null)
 
   const categoryImage = CategoriesDetails.find((cat) => {
     return cat.value === category;
@@ -129,7 +129,7 @@ function SubCatigaries() {
     };
     dispatch(setBookServiceData(bookingData));
   }, [unit, selectedReason, selectedReasons, furnished, unitCounter]);
-  console.log('selected price:: ', selectedPrice)
+  console.log("selected price:: ", selectedPrice);
   const getCurrentDate = (date) => {
     setGetDate(date);
     const today = new Date(date);
@@ -256,10 +256,10 @@ function SubCatigaries() {
 
   const addAdditional = (text, price, hours) => {
     console.log("added");
-    console.log(text)
-    console.log(price)
-    console.log(hours)
-    // setAdditionalData([...additionalData, {title:text, price: price, time:hours}]) 
+    console.log(text);
+    console.log(price);
+    console.log(hours);
+    // setAdditionalData([...additionalData, {title:text, price: price, time:hours}])
   };
 
   function MyVerticallyCenteredModal(props) {
@@ -327,281 +327,102 @@ function SubCatigaries() {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>              disabled = {selectedReason}
-
+        </Modal.Footer>{" "}
+        disabled = {selectedReason}
       </Modal>
     );
   }
 
- 
-  const Page1 = () => (
-    <>
-      {/* <Modal
-        show={modalIsOpen}
-        onHide={() => setIsOpen(false)}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            <div className="heading">
-              <h1>Apartment</h1>
-            </div>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="modelbody">
-            <div className="modelD">
-              <span id="spn">{currentData?.text}</span>
-              <button className="add" onClick={() => addAdditional(currentData?.text, currentData?.prz, currentData?.hrs)}>
-                Add
-              </button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-            <div className="modelD">
-              <span id="spn">{currentData?.text1}</span>
-              <button className="add" onClick={() => addAdditional(currentData?.text1, currentData?.prz1, currentData?.hrs)}>
-                Add
-              </button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz1} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-            <div className="modelD">
-              <button className="add" onClick={() => addAdditional(currentData?.text2, currentData?.prz2, currentData?.hrs)}>
-                Add
-              </button>
-              <button id="add">Add</button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz2} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-            <div className="modelD">
-              <span id="spn">{currentData?.text3}</span>
-              <button className="add" onClick={() => addAdditional(currentData?.text3, currentData?.prz3, currentData?.hrs)}>
-                Add
-              </button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz3} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-            <div className="modelD">
-              <span id="spn">{currentData?.text4}</span>
-              <button className="add" onClick={() => addAdditional(currentData?.text4, currentData?.prz4, currentData?.hrs)}>
-                Add
-              </button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz4} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
+  const Page1 = () => {
+    const [selectedReason, setSelectedReason] = useState("");
+    const [selectedReasons, setSelectedReasons] = useState("");
+    const [selectedReasons2, setSelectedReasons2] = useState("");
+
+    const handleReasonChange = (e) => {
+      const selectedValue = e.target.value;
+      setSelectedReason(selectedValue);
+      setSelectedReasons("");
+      setSelectedReasons2("");
+
+      // Disable the other two selects
+      const otherSelects = [
+        document.querySelector("#uniSelect"),
+        document.querySelector("#reaSelect"),
+      ];
+      otherSelects.forEach((select) => (select.disabled = true));
+
+      // Enable the select that corresponds to the selected value
+      const select =
+        document.querySelector(`#<span class="math-inline">\{selectedValue\}Select\`\);
+  select\.disabled \= false;
+  \};
+  const handleReasonsChange \= \(e\) \=\> \{
+  const selectedValue \= e\.target\.value;
+  setSelectedReasons\(selectedValue\);
+  setSelectedReasons2\(\'\'\);
+  // Disable the other two selects
+  const otherSelects \= \[
+  document\.querySelector\(\'\#uniSelect\'\),
+  document\.querySelector\(\'\#reaSelect\'\),
+  \];
+  otherSelects\.forEach\(select \=\> select\.disabled \= true\);
+  // Enable the select that corresponds to the selected value
+  const select \= document\.querySelector\(\`\#</span>{selectedValue}Select`);
+      select.disabled = false;
+    };
+
+    const handleReasons2Change = (e) => {
+      const selectedValue = e.target.value;
+      setSelectedReasons2(selectedValue);
+
+      // Disable the other two selects
+      const otherSelects = [
+        document.querySelector("#uniSelect"),
+        document.querySelector("#reaSelect"),
+      ];
+      otherSelects.forEach((select) => (select.disabled = true));
+
+      // Enable the select that corresponds to the selected value
+      const select = document.querySelector(`#${selectedValue}Select`);
+      select.disabled = false;
+    };
+
+    return (
+      <>
+        <div>
+          <div className="counter_img"></div>
+          <div className="counter_head">
+            <h1>What service do you need? </h1>
+            <p>
+              Let us know a few details about the service you need or issue you
+              are facing.
+            </p>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setIsOpen(false)}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal
-        show={modalIsOpen1}
-        onHide={() => setIsOpen1(false)}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            <div className="heading">
-              <h1>Villa</h1>
-            </div>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="modelbody">
-            <div className="modelD">
-              <span id="spn">{currentData?.texta1}</span>
-              <button id="add">Add</button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz1a} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-            <div className="modelD">
-              <span id="spn">{currentData?.texta2}</span>
-              <button id="add">Add</button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz2a} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-            <div className="modelD">
-              <span id="spn">{currentData?.texta3}</span>
-              <button id="add">Add</button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz3a} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-            <div className="modelD">
-              <span id="spn">{currentData?.texta4}</span>
-              <button id="add">Add</button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz4a} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setIsOpen1(false)}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal
-        show={modalIsOpen2}
-        onHide={() => setIsOpen2(false)}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            <div className="heading">
-              <h1>Individual Area</h1>
-            </div>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="modelbody">
-            <div className="modelD">
-              <span id="spn">{currentData?.texti1}</span>
-              <button id="add">Add</button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz1i} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-            <div className="modelD">
-              <span id="spn">{currentData?.texti2}</span>
-              <button id="add">Add</button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz2i} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-            <div className="modelD">
-              <span id="spn">{currentData?.texti3}</span>
-              <button id="add">Add</button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz3i} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-            <div className="modelD">
-              <span id="spn">{currentData?.texti4}</span>
-              <button id="add">Add</button>
-            </div>
-            <div className="prz">
-              <p>
-                AED{currentData?.prz4i} . <span>{currentData?.hrs}</span>{" "}
-              </p>
-            </div>
-            <hr></hr>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setIsOpen2(false)}>Close</Button>
-        </Modal.Footer>
-      </Modal> */}
-
-      <div>
-        <div
-          className="counter_img"
-          style={{
-            backgroundImage: `url("${
-              categoryImage ? `/categories/${categoryImage}` : banne
-            }")`,
-          }}
-        ></div>
-        <div className="counter_head">
-          <h1>What service do you need? </h1>
-          <p>
-            Let us know a few details about the service you need or issue you
-            are facing.
-          </p>
-        </div>
-        <div className="conter_select">
-          <p>{currentData?.reason}</p>
-          <div className="selecter">
-            <select
-              onChange={(e) => {setSelectedReason(e.target.value); setDisableOthers(true)}}
-              value={selectedReason}
-              className="text-capitalize"
-              disabled={disableOthers}
-            >
-              {console.log('cirrentdatra reasons::: ', currentData?.reasons)}
-              {currentData?.reasons?.map((el, i) => (
-                <option key={i} value={el}dclassName="text-capitalize">
-                  {el}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        {/* <div className="details">
-          <button id="viewD" onClick={openModal}>
-            View details
-          </button>
-        </div> */}
-
-        {/* <div className="checkbox">
-          <input type="radio" name="location" id="Villa" value="Villa" checked={location === "Villa"} onChange={changeLocationState} />
-          <label for="villa"> {currentData?.vm}</label>
-          <input name="location" type="radio" id="Apartment" value="Appartment" checked={location === "Appartment"} onChange={changeLocationState} />
-          <label for="appartment"> {currentData?.am}</label>
-        </div> */}
-
-        <div className="conter_select">
-          <p>{currentData?.uni}</p>
-
-          {selectedReasons && (
+          <div className="conter_select">
+            <p>{currentData?.reason}</p>
             <div className="selecter">
               <select
-                onChange={(e) => {setSelectedReason(e.target.value); setDisableOthers(true)}}
+                onChange={handleReasonChange}
+                value={selectedReason}
+                className="text-capitalize"
+              >
+                {currentData?.reasons?.map((el, i) => (
+                  <option key={i} value={el} className="text-capitalize">
+                    {el}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="conter_select">
+            <p>{currentData?.uni}</p>
+            <div className="selecter">
+              <select
+                onChange={handleReasonChange}
                 value={selectedReasons}
                 className="text-capitalize"
-                disabled={disableOthers}
+                disabled={selectedReason === ""}
               >
                 {currentData?.rooms?.map((el, i) => (
                   <option key={i} value={el} className="text-capitalize">
@@ -610,24 +431,16 @@ function SubCatigaries() {
                 ))}
               </select>
             </div>
-          )}
-        </div>
-        {/* <div className="details">
-          <button id="viewD" onClick={openModal1}>
-            View details
-          </button>
-        </div> */}
+          </div>
 
-        <div className="conter_select">
-          <p>{currentData?.rea}</p>
-
-          {selectedReasons && (
+          <div className="conter_select">
+            <p>{currentData?.rea}</p>
             <div className="selecter">
               <select
-                onChange={(e) => {setSelectedReason(e.target.value); setDisableOthers(true)}}
-                value={selectedReason}
+                onChange={handleReasons2Change}
+                value={selectedReasons2}
                 className="text-capitalize"
-                disabled={disableOthers}
+                disabled={selectedReason === ""}
               >
                 {currentData?.reas?.map((el, i) => (
                   <option key={i} value={el} className="text-capitalize">
@@ -636,76 +449,13 @@ function SubCatigaries() {
                 ))}
               </select>
             </div>
-          )}
-        </div>
-        {/* <div className="details">
-          <button id="viewD" onClick={openModal2}>
-            View details
-          </button>
-        </div> */}
-
-        <div className="counter">
-          {/* <div className="d-md-flex align-items-center justify-content-between d-block counter_head_1">
-            <p>{currentData?.unit}</p>
-            <p className="d-flex location align-items-center">
-              <button onClick={decreaseCounter} style={{ flex: "1" }}>-</button>
-              <span style={{ flex: "1", textAlign: "center" }}>{unit}</span>
-              <button
-                style={{ flex: "1" }}
-                className="plus-btn"
-                onClick={() => {
-                  setUnit((unit) => unit + counter);
-                  setUnitCounter((unitCounter) => unitCounter + 1);
-                }}
-              >
-                +
-              </button>
-            </p>
-          </div> */}
-
-          <div className="loacation_con">
-            <div className="location_head">
-              <p>
-                {currentData?.additional}
-                <br />
-                {currentData?.additionalCharges && (
-                  <span style={{ fontSize: "10px" }}>
-                    Additional charges{" "}
-                    <span style={{ color: "red" }}>
-                      {currentData?.additionalCharges} AED
-                    </span>{" "}
-                    per unit
-                  </span>
-                )}
-              </p>
-            </div>
-            <div className="yes_bnt">
-              <button
-                className={activeBtn == "yes" ? "yes btn-active" : "yes"}
-                type="button"
-                onClick={() => {
-                  setActiveBtn("yes");
-                  setFurnished(true);
-                }}
-              >
-                Yes
-              </button>
-              <button
-                className={activeBtn == "no" ? "no btn-active" : "no"}
-                type="button"
-                onClick={() => {
-                  setActiveBtn("no");
-                  setFurnished(false);
-                }}
-              >
-                No
-              </button>
-            </div>
           </div>
+
+          <div className="counter">{/* ... other code ... */}</div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  };
 
   const Page2 = () => (
     <div>
@@ -934,9 +684,9 @@ function SubCatigaries() {
                 </p>
               </Offcanvas.Body>
             </Offcanvas>
-            
+
             <Button variant="primary" onClick={() => setModalShow(true)}>
-              AED 
+              AED
               {currentData?.onSurvey
                 ? 0.0
                 : activeBtn == "yes" && currentData?.additionalCharges
