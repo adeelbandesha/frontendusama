@@ -62,6 +62,7 @@ function SubCatigaries() {
     (elem) => elem?.name == subcategory
   );
 
+
   const counter = currentData?.units;
   const [unit, setUnit] = useState(currentData?.units);
   const [unitCounter, setUnitCounter] = useState(1);
@@ -112,19 +113,19 @@ function SubCatigaries() {
       text: "Booking Summary",
       subTotal: Number(
         currentData?.price * unitCounter +
-          (currentData?.additionalCharges && activeBtn == "yes"
-            ? currentData?.additionalCharges * unitCounter
-            : 0)
+        (currentData?.additionalCharges && activeBtn == "yes"
+          ? currentData?.additionalCharges * unitCounter
+          : 0)
       ).toFixed(2),
       discount: currentData.onSurvey
         ? 0
         : Number(0.65 * unitCounter).toFixed(2),
       total: Number(
         currentData?.price * unitCounter -
-          (0.65 * unitCounter).toFixed(2) +
-          (currentData?.additionalCharges && activeBtn == "yes"
-            ? currentData?.additionalCharges * unitCounter
-            : 0)
+        (0.65 * unitCounter).toFixed(2) +
+        (currentData?.additionalCharges && activeBtn == "yes"
+          ? currentData?.additionalCharges * unitCounter
+          : 0)
       ).toFixed(2),
     };
     dispatch(setBookServiceData(bookingData));
@@ -298,9 +299,9 @@ function SubCatigaries() {
             <p>
               {Number(
                 currentData?.price * unitCounter +
-                  (currentData?.additionalCharges && activeBtn == "yes"
-                    ? currentData?.additionalCharges * unitCounter
-                    : 0)
+                (currentData?.additionalCharges && activeBtn == "yes"
+                  ? currentData?.additionalCharges * unitCounter
+                  : 0)
               ).toFixed(2)}
             </p>
           </div>
@@ -314,10 +315,10 @@ function SubCatigaries() {
             <h5 className="fw-bold">
               {Number(
                 currentData?.price * unitCounter -
-                  (0.65 * unitCounter).toFixed(2) +
-                  (currentData?.additionalCharges && activeBtn == "yes"
-                    ? currentData?.additionalCharges * unitCounter
-                    : 0)
+                (0.65 * unitCounter).toFixed(2) +
+                (currentData?.additionalCharges && activeBtn == "yes"
+                  ? currentData?.additionalCharges * unitCounter
+                  : 0)
               ).toFixed(2)}
             </h5>
           </div>
@@ -328,7 +329,6 @@ function SubCatigaries() {
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>{" "}
-        disabled = {selectedReason}
       </Modal>
     );
   }
@@ -337,6 +337,7 @@ function SubCatigaries() {
     const [selectedReason, setSelectedReason] = useState("");
     const [selectedReasons, setSelectedReasons] = useState("");
     const [selectedReasons2, setSelectedReasons2] = useState("");
+    const [selectElement, setSelectElement] = useState("0")
 
     const handleReasonChange = (e) => {
       const selectedValue = e.target.value;
@@ -344,47 +345,14 @@ function SubCatigaries() {
       setSelectedReasons("");
       setSelectedReasons2("");
 
-      // Disable the other two selects
-      const otherSelects = [
-        document.querySelector("#uniSelect"),
-        document.querySelector("#reaSelect"),
-      ];
-      otherSelects.forEach((select) => (select.disabled = true));
+      setSelectElement(e.target.id)
 
-      // Enable the select that corresponds to the selected value
-      const select =
-        document.querySelector(`#<span class="math-inline">\{selectedValue\}Select\`\);
-  select\.disabled \= false;
-  \};
-  const handleReasonsChange \= \(e\) \=\> \{
-  const selectedValue \= e\.target\.value;
-  setSelectedReasons\(selectedValue\);
-  setSelectedReasons2\(\'\'\);
-  // Disable the other two selects
-  const otherSelects \= \[
-  document\.querySelector\(\'\#uniSelect\'\),
-  document\.querySelector\(\'\#reaSelect\'\),
-  \];
-  otherSelects\.forEach\(select \=\> select\.disabled \= true\);
-  // Enable the select that corresponds to the selected value
-  const select \= document\.querySelector\(\`\#</span>{selectedValue}Select`);
-      select.disabled = false;
     };
 
     const handleReasons2Change = (e) => {
       const selectedValue = e.target.value;
       setSelectedReasons2(selectedValue);
-
-      // Disable the other two selects
-      const otherSelects = [
-        document.querySelector("#uniSelect"),
-        document.querySelector("#reaSelect"),
-      ];
-      otherSelects.forEach((select) => (select.disabled = true));
-
-      // Enable the select that corresponds to the selected value
-      const select = document.querySelector(`#${selectedValue}Select`);
-      select.disabled = false;
+      setSelectElement(e.target.id)
     };
 
     return (
@@ -398,58 +366,77 @@ function SubCatigaries() {
               are facing.
             </p>
           </div>
-          <div className="conter_select">
-            <p>{currentData?.reason}</p>
-            <div className="selecter">
-              <select
-                onChange={handleReasonChange}
-                value={selectedReason}
-                className="text-capitalize"
-              >
-                {currentData?.reasons?.map((el, i) => (
-                  <option key={i} value={el} className="text-capitalize">
-                    {el}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
 
-          <div className="conter_select">
-            <p>{currentData?.uni}</p>
-            <div className="selecter">
-              <select
-                onChange={handleReasonChange}
-                value={selectedReasons}
-                className="text-capitalize"
-                disabled={selectedReason === ""}
-              >
-                {currentData?.rooms?.map((el, i) => (
-                  <option key={i} value={el} className="text-capitalize">
-                    {el}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
 
-          <div className="conter_select">
-            <p>{currentData?.rea}</p>
-            <div className="selecter">
-              <select
-                onChange={handleReasons2Change}
-                value={selectedReasons2}
-                className="text-capitalize"
-                disabled={selectedReason === ""}
-              >
-                {currentData?.reas?.map((el, i) => (
-                  <option key={i} value={el} className="text-capitalize">
-                    {el}
-                  </option>
-                ))}
-              </select>
+          {currentData?.reason ?
+
+            <div className="conter_select">
+              <p>{currentData?.reason}</p>
+              <div className="selecter">
+                <select
+                  id="1"
+                  onChange={handleReasonChange}
+                  value={selectedReason}
+                  className="text-capitalize"
+                  disabled={selectElement !== "0" && selectElement !== "1"}
+
+                >
+                  {currentData?.reasons?.map((el, i) => (
+                    <option key={i} value={el} className="text-capitalize">
+                      {el}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-          </div>
+            : null
+          }
+
+          {currentData?.uni ?
+
+            <div className="conter_select">
+              <p>{currentData?.uni}</p>
+              <div className="selecter">
+                <select
+                  id="2"
+                  onChange={handleReasonChange}
+                  value={selectedReasons}
+                  className="text-capitalize"
+                  disabled={selectElement !== "0" && selectElement !== "2"}
+                >
+                  {currentData?.rooms?.map((el, i) => (
+                    <option key={i} value={el} className="text-capitalize">
+                      {el}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            : null
+          }
+
+          {currentData?.rea ?
+            <div className="conter_select">
+              <p>{currentData?.rea}</p>
+              <div className="selecter">
+                <select
+                  id="3"
+                  onChange={handleReasons2Change}
+                  value={selectedReasons2}
+                  className="text-capitalize"
+                  disabled={selectElement !== "0" && selectElement !== "3"}
+                >
+                  {currentData?.reas?.map((el, i) => (
+                    <option key={i} value={el} className="text-capitalize">
+                      {el}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            : null
+          }
 
           <div className="counter">{/* ... other code ... */}</div>
         </div>
@@ -462,9 +449,8 @@ function SubCatigaries() {
       <div
         className="counter_img"
         style={{
-          backgroundImage: `url("${
-            categoryImage ? `/categories/${categoryImage}` : banne
-          }")`,
+          backgroundImage: `url("${categoryImage ? `/categories/${categoryImage}` : banne
+            }")`,
         }}
       ></div>
       <div className="counter_head">
@@ -486,9 +472,8 @@ function SubCatigaries() {
                 onClick={() => getCurrentDate(el?.date)}
               >
                 <button
-                  className={`date_piker ${
-                    el?.date == getDate ? "date_active" : ""
-                  }`}
+                  className={`date_piker ${el?.date == getDate ? "date_active" : ""
+                    }`}
                 >
                   <p className="day">{el?.dayName}</p>
                   <h6 className="slider_date">{el?.date.split("/")[1]}</h6>
@@ -506,9 +491,8 @@ function SubCatigaries() {
           {selectedTimes?.map((el, i) => {
             return (
               <div
-                className={`time_border pointer ${
-                  el == getTime ? "time_border_active" : ""
-                }`}
+                className={`time_border pointer ${el == getTime ? "time_border_active" : ""
+                  }`}
                 key={i}
                 onClick={() => setGetTime(el)}
               >
@@ -579,7 +563,7 @@ function SubCatigaries() {
         time={getTime}
         currentData={currentData}
         location={location}
-        // additionaldata = {additionalData? additionalData : null}
+      // additionaldata = {additionalData? additionalData : null}
       >
         <Page1 />
         <Page2 category={category} />
@@ -690,10 +674,10 @@ function SubCatigaries() {
               {currentData?.onSurvey
                 ? 0.0
                 : activeBtn == "yes" && currentData?.additionalCharges
-                ? currentData?.price * unitCounter -
+                  ? currentData?.price * unitCounter -
                   (0.65 * unitCounter).toFixed(2) +
                   unitCounter * currentData?.additionalCharges
-                : currentData?.price * unitCounter -
+                  : currentData?.price * unitCounter -
                   (0.65 * unitCounter).toFixed(2)}
               {currentData?.onSurvey ? (
                 <p
